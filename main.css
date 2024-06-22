@@ -1,0 +1,257 @@
+@font-face {
+	font-family: 'sriftas-su-simboliais';
+	src: url('font/subset.woff') format("woff");
+}
+
+* {
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	font-family: sriftas-su-simboliais;
+	overflow: hidden;
+}
+
+button {
+	font-family: sriftas-su-simboliais;
+}
+
+.noscript{
+	font-size: 12vmin;
+	text-align: center;
+	display: block;
+}
+
+canvas {
+	background-size: cover;
+	background-position: center;
+	width: 100%;
+}
+
+.controlls {
+	position: absolute;
+	cursor: default;
+	bottom: 0;
+	right: 0;
+	opacity: 0;
+	animation: 1s ease-in hide;
+	transition: opacity 300ms ease-in;
+}
+
+.controlls:hover {
+	opacity: 1;
+	transition: opacity 300ms ease-in;
+}
+
+@keyframes hide{
+	from {
+		opacity: 1;
+	}
+	
+	to {
+		opacity: 0;
+	}
+}
+
+.controlls button{
+	height: 80px;
+	width: 80px;
+	border: 1px solid black;
+	border-radius: 40px;
+	font-size: 80px;
+	background-color: rgba(60, 60, 60, 0.5);
+	outline: none;
+	position: relative;
+	vertical-align: top;
+}
+
+.controlls button:hover{
+	background-color: rgba(60, 60, 60, 0.8);
+}
+
+.controlls button:active{
+	background-color: rgba(255, 60, 60, 0.8);
+}
+
+.controlls button:after{
+	display: block;
+	line-height: 100px;
+	position: absolute;
+	top: 0;
+	right: 1px;
+}
+
+#prev:after{
+	content: '⏪'
+}
+
+#next:after{
+	content: '⏩'
+}
+
+#volume{
+	border: none;
+}
+#volume:after{
+	right: -4px;
+	top: 2px;
+}
+
+#volume.mute:after{
+	content: '🔇';
+}
+
+#volume.low:after{
+	content: '🔈';
+	right: 7px;
+}
+
+#volume.medium:after{
+	content: '🔉';
+}
+
+#volume.high:after{
+	content: '🔊';
+	right: 7px;
+	font-size: 0.8em;
+}
+
+#volume svg {
+	display: block;
+}
+
+#volume circle{
+	stroke-dasharray: 238.76104167282404;
+	stroke-dashoffset: 238.76104167282404;
+	transition: stroke-dashoffset 300ms ease;
+}
+
+#volume.mute circle{
+	visibility: hidden;
+}
+
+@-moz-document url-prefix() {
+	#volume:after{
+		font-size: 0.9em;
+	}
+	#volume.mute:after{
+		right: 0;
+		font-size: 1em;
+	}
+	#volume.low:after{
+		right: -7px;
+	}
+}
+
+.splash{
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: black;
+	opacity: 0.96;
+}
+
+.splash:before{
+	content: ' ▶';
+	width: 300px;
+	height: 100px;
+	margin: auto;
+	position: relative;
+	display: block;
+	top: 40%;
+	font-size: 100px;
+	border: 1px solid black;
+	background-color: white;
+	border-radius: 20%;
+	line-height: 120px;
+	text-align: center;
+	padding: 0.3em;
+	
+	animation-duration: 3s;
+	animation-name: grazu;
+	animation-iteration-count: infinite;
+	animation-direction: alternate;
+}
+
+@keyframes grazu{
+	0%{
+		color: black;
+		transform: rotate(-2deg);
+	}
+	
+	30%{
+		color: red;
+		transform: rotate(2deg);
+	}
+	
+	60%{
+		color: green;
+		transform: rotate(-2deg);
+	}
+	
+	to{
+		color: blue;
+		transform: rotate(2deg);
+	}
+}
+
+#progress {
+	position: absolute;
+	text-align: center;
+	font-size: 15vmin;
+	animation: progress-rotation 3s linear infinite;
+	animation-direction: alternate;
+	width: 100%;
+}
+
+@keyframes progress-rotation{
+	to {
+		transform:rotate(180deg);
+	}
+}
+
+#title {
+	position: absolute;
+	border: 1px solid gray;
+	height: 1.5em;
+	width: 0;
+	right: 0;
+	top: 10%;
+	padding: 0.5em;
+	background: rgba(200,200,200,0.6);
+	border-radius: 2em 0 0 2em;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	font-family: monospace;
+	line-height: 1.5em;
+	font-size: 1.5em;
+	opacity: 0;
+}
+
+#title:hover, #title.visible {
+	animation: slinkimas 2s ease-in;
+	width: auto;
+	opacity: 1;
+}
+
+@keyframes slinkimas {
+	0%{
+		width: 0;
+		opacity: 0;
+	}
+
+	50%{
+		opacity: 1;
+	}
+
+	99%{
+		width: 15em;
+	}
+	100% {
+		width: auto;
+	}
+}
